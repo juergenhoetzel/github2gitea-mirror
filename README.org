@@ -1,0 +1,26 @@
+#+title: Mirror your starred Github repos to a Gitea organization
+
+* Inspiration for this script
+
+[[https://github.com/go-gitea/gitea/issues/8424][Proposal: Mirror an entire github organization into gitea organization]]
+
+I wanted to mirror my starred repos instead. Mirroring an organization is on the [[*TODOs][TODOs]] list.
+
+* Usage
+
+Using [[https://github.com/][GitHub]] user =juergenhoetzel= and Gitea organization =githubmirror=
+
+#+BEGIN_SRC bash
+  export ACCESS_TOKEN=3a765a661619136db92aa267d90c457573x98812
+  export GITEA_URL=http://gitea.fritz.box:3000
+  github2gitea-mirror  juergenhoetzel githubmirror
+#+END_SRC
+
+
+* TODOs
+  - [ ] Mirror github organization
+  - [ ] Mirror private repos
+
+
+
+
