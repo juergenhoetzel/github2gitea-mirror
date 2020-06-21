@@ -1,4 +1,7 @@
-#!/bin/bash -e
+#!/bin/bash
+
+set -euo pipefail
+
 # Mirror starred Github repos to a Gitea Organization
 CURL="curl -f"
 
