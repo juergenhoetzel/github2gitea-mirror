@@ -11,8 +11,8 @@ if [[ -z "${ACCESS_TOKEN}" || -z "${GITEA_URL}" ]];then
     exit 1
 fi
 
-github_user="${1}"
-gitea_organization="${2}"
+github_user="${1:-}"
+gitea_organization="${2:-}"
 
 if [[ -z "${github_user}" || -z "${gitea_organization}" ]]; then
     echo "Usage: $0 github_user gitea_organization" >&2
