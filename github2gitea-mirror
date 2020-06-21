@@ -3,7 +3,7 @@
 set -euo pipefail
 
 # Mirror starred Github repos to a Gitea Organization
-CURL="curl -f"
+CURL="curl -f -S -s"
 
 if [[ -z "${ACCESS_TOKEN}" || -z "${GITEA_URL}" ]];then
     echo -e "Please set gitea access token and url in environment:\nexport ACCESS_TOKEN=abc\nexport GITEA_URL=http://gitea:3000\n" >&2
@@ -23,7 +23,7 @@ header_options=(-H  "Authorization: Bearer ${ACCESS_TOKEN}" -H "accept: applicat
 jsonoutput=$(mktemp -d -t github-repos-XXXXXXXX)
 trap "rm -rvf ${jsonoutput}" EXIT
 
-uid=$($CURL -s "${header_options[@]}" $GITEA_URL/api/v1/orgs/${gitea_organization} |jq .id)
+uid=$($CURL "${header_options[@]}" $GITEA_URL/api/v1/orgs/${gitea_organization} |jq .id)
 
 fetch_starred_repos(){
     i=1
