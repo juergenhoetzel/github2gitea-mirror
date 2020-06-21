@@ -48,7 +48,7 @@ repos_to_migration() {
 	n=$(jq '.|length'<$f)
 	(( n-- ))		# last element
 	for i in $(seq 0 $n); do
-	    jq ".[$i]|.uid=${uid}|.mirror=true|.clone_addr=.clone_url|.repo_name=.name|{uid,repo_name,clone_addr,description}" <$f \
+	    jq ".[$i]|.uid=${uid}|.mirror=true|.clone_addr=.clone_url|.description=.description[0:255]|.repo_name=.name|{uid,repo_name,clone_addr,description}" <$f \
 		| create_migration_repo
 	done
     done
