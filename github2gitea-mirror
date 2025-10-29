@@ -7,7 +7,7 @@ CURL="curl -f -S -s"
 
 if [[ -z "${ACCESS_TOKEN}" || -z "${GITEA_URL}" ]];then
     echo -e "Please set gitea access token and url in environment:\nexport ACCESS_TOKEN=abc\nexport GITEA_URL=http://gitea:3000\n" >&2
-    echo -e "Don't use trailing slash in URL!"
+    echo -e "Don't use trailing slash in URL!" >&2
     exit 1
 fi
 
