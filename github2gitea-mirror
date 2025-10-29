@@ -46,8 +46,10 @@ create_migration_repo() {
 repos_to_migration() {
     for f in ${jsonoutput}/*.json; do
 	n=$(jq '.|length'<$f)
-	(( n-- ))		# last element
-	for i in $(seq 0 $n); do
+	if (( n == 0 )); then
+	    continue
+	fi
+	for i in $(seq 0 $(( n - 1 ))); do
 	    jq ".[$i]|.uid=${uid}|.mirror=true|.clone_addr=.clone_url|.description=.description[0:255]|.repo_name=.name|{uid,repo_name,clone_addr,description,mirror}" <$f \
 		| create_migration_repo
 	done
